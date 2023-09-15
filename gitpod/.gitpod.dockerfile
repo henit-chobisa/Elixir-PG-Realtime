@@ -5,6 +5,9 @@ USER root
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
+
+USER gitpod
+
 RUN brew install elixir
 RUN mix archive.install hex phx_new --force
 
@@ -17,5 +20,3 @@ RUN mix archive.install hex phx_new --force
 #     && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*
 
 # Set wal_level to logical
-RUN mkdir /var/lib/postgresql/data/
-RUN echo "wal_level=logical" >> /var/lib/postgresql/data/postgresql.conf
