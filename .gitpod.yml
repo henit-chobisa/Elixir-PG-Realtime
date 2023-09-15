@@ -1,0 +1,10 @@
+image:
+  file: gitpod/.gitpod.dockerfile
+
+tasks:
+  - name: Phx
+    command: chmod +x gitpod/start.sh && gitpod/start.sh
+
+vscode:
+  extensions:
+    - "jakebecker.elixir-ls"
