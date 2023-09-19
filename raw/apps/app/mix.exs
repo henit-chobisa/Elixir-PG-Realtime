@@ -1,12 +1,10 @@
-defmodule PostgresListener.MixProject do
+defmodule App.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :pglistener,
-      name: "Plane Pg Listener",
+      app: :app,
       version: "0.1.0",
-      build_embedded: Mix.env() == :prod,
       build_path: "../../_build",
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
@@ -21,19 +19,16 @@ defmodule PostgresListener.MixProject do
   def application do
     [
       extra_applications: [:logger],
+      mod: {App.Application, []}
     ]
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:postgrex, "~> 0.17"},
-      {:decimal, "~> 2.1.1"},
-      {:ex_doc, "~> 0.30.4", only: :dev, runtime: false},
-      {:jason, "~> 1.4"},
-      {:map_diff, "~> 1.3"},
-      {:retry, "~> 0.18.0"},
-      {:timex, "~> 3.7"}
+      # {:dep_from_hexpm, "~> 0.3.0"},
+      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
+      {:pglistener, in_umbrella: true}
     ]
   end
 end

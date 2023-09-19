@@ -16,3 +16,13 @@ import Config
 #       format: "$date $time [$level] $metadata$message\n",
 #       metadata: [:user_id]
 #
+config :app, PostgresListener,
+  hostname: "localhost",
+  username: "root",
+  password: "postgres",
+  port: "5432",
+  database: "realtime",
+  publications: ["events"],
+  subscriptions: [:user_account],
+  modules: [App.GetterModule],
+  name: App
