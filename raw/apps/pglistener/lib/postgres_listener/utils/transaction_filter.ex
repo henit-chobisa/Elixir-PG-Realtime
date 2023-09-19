@@ -2,7 +2,7 @@
 # which in turn draws on https://github.com/cainophile/cainophile
 
 defmodule PostgresListener.Utils.TransactionFilter do
-  alias PostgresListener.Utils.TransactionFilter
+  alias PostgresListener.Utils.Changes.Transaction
 
   require Logger
 
@@ -49,7 +49,7 @@ defmodule PostgresListener.Utils.TransactionFilter do
         Enum.any?(changes, fn change -> change_matches(event, filter, change) end)
 
       {:error, msg} ->
-        Logger.warn("Could not parse relation filter: #{inspect(msg)}")
+        Logger.warning("Could not parse relation filter: #{inspect(msg)}")
         false
     end
   end

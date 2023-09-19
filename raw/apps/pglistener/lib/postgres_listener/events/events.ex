@@ -7,11 +7,11 @@ defmodule PostgresListener.Events.Root do
   """
 
   @impl true
-  def init(opts) do
+  def init(_opts) do
     {:ok, %{}}
   end
 
-  def start_link(opts) do
+  def start_link(_opts) do
     GenServer.start_link(__MODULE__, %{}, name: __MODULE__)
   end
 
@@ -22,7 +22,7 @@ defmodule PostgresListener.Events.Root do
 
   @impl true
   def handle_call({:process, txn, server}, _from, state) do
-    server |> PostgresListener.Configs.Root.getConfigs([:modules]) |> process_events(txn)
+    server |> PostgresListener.Configs.Root.get_configs([:modules]) |> process_events(txn)
     {:reply, :ok, state}
   end
 

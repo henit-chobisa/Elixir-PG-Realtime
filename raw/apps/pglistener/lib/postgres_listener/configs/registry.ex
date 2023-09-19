@@ -23,10 +23,6 @@ defmodule PostgresListener.Configs.Registry do
   def set_name(:set_supervisor, module, app_name), do: set_name(:via, module, app_name)
   def set_name(:set_genserver, module, app_name), do: set_name(:via, module, app_name)
 
-
-  @doc """
-  Generic function used by the external api to set the process to the registry
-  """
   defp set_name(module, app_name), do: {:via, Registry, {@pg_registry, {module, app_name}}}
 
   @doc """

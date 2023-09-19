@@ -15,7 +15,7 @@ defmodule PostgresListener.Configs.Root do
     configs = opts |> Keyword.get(:configs)
     app_name = Keyword.get(configs, :name)
     name = Registry.set_name(:set_agent, __MODULE__, app_name)
-    Agent.start_link(&(configs), name: name)
+    Agent.start_link(fn -> configs end, name: name)
   end
 
 
@@ -23,7 +23,7 @@ defmodule PostgresListener.Configs.Root do
   Returns the configuration for a particular app from the registry. The registry fetches the current agent responsible for the current app with the __MODULE__ and the appname and then returns the current state from it.
   """
   def get_configs(app_name, keys \\ []) when is_list(keys) do
-    configs = WalEx.Registry.get_state(:get_agent, __MODULE__, app_name)
+    configs = PostgresListener.Configs.Registry.get_state(:get_agent, __MODULE__, app_name)
     if Enum.empty?(keys), do: configs, else: Keyword.take(configs, keys)
   end
 

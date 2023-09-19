@@ -6,7 +6,6 @@ defmodule PostgresListener.Replication.ReplicationPublisher do
   use GenServer
 
   alias PostgresListener.Utils.Changes
-  alias PostgresListener.Utils.Events
   alias PostgresListener.Postgres.Decoder.Messages
   alias PostgresListener.Utils.Types
 
@@ -59,7 +58,7 @@ defmodule PostgresListener.Replication.ReplicationPublisher do
       )
       when commit_lsn == current_txn_lsn do
 
-    Events.process(txn, app_name)
+    PostgresListener.Events.Root.process(txn, app_name)
 
     %{state | transaction: nil}
 

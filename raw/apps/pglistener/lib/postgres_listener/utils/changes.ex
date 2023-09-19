@@ -33,8 +33,8 @@ defmodule PostgresListener.Utils.Changes do
   defmodule(TruncatedRelation, do: defstruct([:type, :schema, :table, :commit_timestamp]))
 end
 
-Protocol.derive(Jason.Encoder, PostgresListener.Utils.Transaction)
-Protocol.derive(Jason.Encoder, PostgresListener.Utils.NewRecord)
-Protocol.derive(Jason.Encoder, PostgresListener.Utils.UpdatedRecord)
-Protocol.derive(Jason.Encoder, PostgresListener.Utils.DeletedRecord)
-Protocol.derive(Jason.Encoder, PostgresListener.Utils.TruncatedRelation)
+Protocol.derive(Jason.Encoder, PostgresListener.Utils.Changes.Transaction)
+Protocol.derive(Jason.Encoder, PostgresListener.Utils.Changes.NewRecord)
+Protocol.derive(Jason.Encoder, PostgresListener.Utils.Changes.UpdatedRecord)
+Protocol.derive(Jason.Encoder, PostgresListener.Utils.Changes.DeletedRecord)
+Protocol.derive(Jason.Encoder, PostgresListener.Utils.Changes.TruncatedRelation)

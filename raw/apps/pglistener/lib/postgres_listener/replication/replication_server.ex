@@ -11,8 +11,9 @@ defmodule PostgresListener.Replication.ReplicationServer do
   Refer: https://postgrespro.com/docs/postgresql/15/protocol-logicalrep-message-formats
   There are two types of data types we are handling here in server, Wal Messages ( starts with ?w) which are WAL Messages for any update / insert / delete events and the others are control messages ( ?k ) which are responsible for Synchronization of messages, what operation happened after what.
   """
-  use Postrex.ReplicationConnection
+  use Postgrex.ReplicationConnection
   alias PostgresListener.Replication.ReplicationPublisher
+  alias PostgresListener.Postgres.Decoder
   alias PostgresListener.Configs.Registry
 
   def start_link(opts) do
@@ -90,9 +91,6 @@ defmodule PostgresListener.Replication.ReplicationServer do
     {:noreply, state}
   end
 
-  @doc """
-  Handles the control messages, for synchronization purposes
-  """
   def handle_data(<<?k, wal_end::64, _clock::64, reply>>, state) do
     messages =
       case reply do

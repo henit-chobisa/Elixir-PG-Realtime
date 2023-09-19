@@ -2,7 +2,7 @@ defmodule PostgresListener.Events.Event do
   import PostgresListener.Utils.TransactionFilter
 
   alias PostgresListener.Utils.Changes
-  alias PostgresListener.Utils.Event
+  alias PostgresListener.Events.Event
 
   defstruct(
     table: nil,

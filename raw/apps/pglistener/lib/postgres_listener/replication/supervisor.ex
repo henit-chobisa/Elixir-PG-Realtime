@@ -18,7 +18,7 @@ defmodule PostgresListener.Replication.Supervisor do
 
   def start_link(opts) do
     app_name = Keyword.get(opts, :app_name)
-    name = WalEx.Registry.set_name(:set_supervisor, __MODULE__, app_name)
+    name = PostgresListener.Configs.Registry.set_name(:set_supervisor, __MODULE__, app_name)
     Supervisor.start_link(__MODULE__, configs: opts, name: name)
   end
 end
