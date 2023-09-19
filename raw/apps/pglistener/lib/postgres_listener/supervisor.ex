@@ -1,6 +1,4 @@
-defmodule PostgresListener.Application do
-
-  # use Application
+defmodule PostgresListener.Supervisor do
 
   use Supervisor
 
@@ -45,9 +43,11 @@ defmodule PostgresListener.Application do
     # get the provided app name from the configuration
     app_name = Keyword.get(opts, :name)
 
-    # TODO: Start the registry and set the supervisor
+    # Start the registry and set the supervisor, FOR THE CURRENT DEPENDENT APPLICATION
+    { :ok, _pid } = Configs.Registry.start_registry()
+    name = Configs.Registry.set_name(:set_supervisor, __MODULE__, app_name)
 
-    Supervisor.start_link(__MODULE__, configs: opts, name: app_name)
+    Supervisor.start_link(__MODULE__, configs: opts, name: name)
 
   end
 
