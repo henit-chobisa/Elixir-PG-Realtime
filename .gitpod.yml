@@ -3,7 +3,7 @@ image:
 
 tasks:
   - name: Phx
-    command: chmod +x gitpod/start.sh && gitpod/start.sh
+    command: chmod +x .gitpod/start.sh && .gitpod/start.sh
 
 vscode:
   extensions:

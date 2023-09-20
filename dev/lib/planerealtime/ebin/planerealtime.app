@@ -1,0 +1,13 @@
+{application,planerealtime,
+             [{optional_applications,[]},
+              {applications,[kernel,stdlib,elixir,logger,runtime_tools,
+                             phoenix_pubsub,ecto_sql,postgrex,jason,swoosh,
+                             finch]},
+              {description,"planerealtime"},
+              {modules,['Elixir.Planerealtime',
+                        'Elixir.Planerealtime.Application',
+                        'Elixir.Planerealtime.Mailer',
+                        'Elixir.Planerealtime.Repo']},
+              {registered,[]},
+              {vsn,"0.1.0"},
+              {mod,{'Elixir.Planerealtime.Application',[]}}]}.
